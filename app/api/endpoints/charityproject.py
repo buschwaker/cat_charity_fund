@@ -80,7 +80,6 @@ async def remove_project(
     project = await check_project_before_edit(
         project_id, session
     )
-    # await if_proj_closed(project_id, session)
     await if_donations_poured(project_id, session)
     meeting_room = await charity_crud.remove(project, session)
     return meeting_room

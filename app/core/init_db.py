@@ -5,6 +5,7 @@ from pydantic import EmailStr
 
 from app.core.config import settings
 from app.core.db import get_async_session
+from app.core.logger_config import logger
 from app.core.user import get_user_db, get_user_manager
 from app.schemas.user import UserCreate
 
@@ -28,7 +29,7 @@ async def create_user(
                         )
                     )
     except UserAlreadyExists:
-        pass
+        logger.info('Пользователь уже существует!')
 
 
 async def create_first_superuser():
